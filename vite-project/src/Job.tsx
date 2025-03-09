@@ -90,6 +90,8 @@ export const JobList2 = () => {
     );
 };
 
+const empty_jobs: IJobs[] = [];
+
 const jobs: IJobs[] = [
     { id: 1, title: "Junior UI/UX Designer", company: "Google", location: "Owerri, Nigeria", salary: "50" },
     { id: 2, title: "Senior Backend Engineer", company: "Google", location: "Owerri, Nigeria", salary: "500" },
