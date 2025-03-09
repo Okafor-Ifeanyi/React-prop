@@ -1,4 +1,5 @@
 import './Job.css'
+import { useEffect } from "react";
 
 interface IJobs {
     id: number
@@ -65,7 +66,7 @@ export const JobList1 = () => {
     )
 }
 
-export const JobList = () => {
+export const JobList2 = () => {
     const jobs: IJobs[] = [
         { id: 1, title: "Junior UI/UX Designer", company: "Google", location: "Owerri, Nigeria", salary: "50" },
         { id: 2, title: "Senior Backend Engineer", company: "Google", location: "Owerri, Nigeria", salary: "500" },
@@ -82,6 +83,34 @@ export const JobList = () => {
     return (
         <section className='Joblisting'>
             <h2>Total Jobs: {jobs.length}</h2>
+            {jobs.map((job) => (
+                <JobCard key={job.id} {...job} />
+            ))}
+        </section>
+    );
+};
+
+const jobs: IJobs[] = [
+    { id: 1, title: "Junior UI/UX Designer", company: "Google", location: "Owerri, Nigeria", salary: "50" },
+    { id: 2, title: "Senior Backend Engineer", company: "Google", location: "Owerri, Nigeria", salary: "500" },
+    { id: 3, title: "Senior Backend Engineer", company: "Google", location: "Owerri, Nigeria", salary: "500" },
+    { id: 4, title: "UX Designer", company: "Google", location: "Owerri, Nigeria", salary: "50" },
+    { id: 5, title: "Yahhoo Boy", company: "Google", location: "Owerri, Nigeria", salary: "80" },
+    { id: 6, title: "UX Designer", company: "Google", location: "Owerri, Nigeria", salary: "50" },
+    { id: 7, title: "Plumber", company: "Google", location: "Owerri, Nigeria", salary: "30" },
+    { id: 8, title: "SauceCode", company: "Google", location: "Owerri, Nigeria", salary: "300" },
+    { id: 9, title: "Plumber", company: "Google", location: "Owerri, Nigeria", salary: "30" },
+    { id: 10, title: "Onye Odinaka", company: "Google", location: "Owerri, Nigeria", salary: "30" }
+];
+
+export const JobList = ({ setTotalJobs }: { setTotalJobs: (count: number) => void }) => {
+    useEffect(() => {
+        setTotalJobs(jobs.length); // Update total jobs
+    }, []);
+
+    return (
+        <section className='Joblisting'>
+            {/* <h2>Total Jobs: {jobs.length}</h2> */}
             {jobs.map((job) => (
                 <JobCard key={job.id} {...job} />
             ))}
