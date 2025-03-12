@@ -138,6 +138,11 @@ div.main-full {
   margin-top: 5px;
 }
 
+.showDetails {
+  text-align: center;
+  color: #0000009f;
+}
+
 @media (max-width: 768px) {
   .Joblisting {
     justify-content: center;

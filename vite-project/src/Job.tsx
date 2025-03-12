@@ -1,5 +1,5 @@
 import './Job.css'
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface IJobs {
     id: number
@@ -11,6 +11,8 @@ interface IJobs {
     logo?: string
 }
 export const JobCard = (job: IJobs ) => {
+    const [isToggled, setIsToggled] = useState(false);
+
     return ( 
         <div className="JobCard">
             <div className="colordiv"> 
@@ -41,9 +43,15 @@ export const JobCard = (job: IJobs ) => {
                         <strong>${job.salary}/hr</strong>
                         <p>{job.location}</p>
                     </div>
-                    <button className="details"> Details</button>
+                    {/* <button className="details"> Details</button> */}
+                    <button
+                        className="details"
+                        onClick={() => setIsToggled(!isToggled)}
+                    >
+                        {isToggled ? "Hide Details" : "Details"}
+                    </button>
                 </div>
-                
+                {isToggled && <p className="showDetails">Sorry, this job is no longer Abailable!</p>}
             </div>
         </div>
     )
@@ -90,7 +98,7 @@ export const JobList2 = () => {
     );
 };
 
-const empty_jobs: IJobs[] = [];
+// const empty_jobs: IJobs[] = [];
 
 const jobs: IJobs[] = [
     { id: 1, title: "Junior UI/UX Designer", company: "Google", location: "Owerri, Nigeria", salary: "50" },
@@ -115,7 +123,7 @@ export const JobList = ({ setTotalJobs }: { setTotalJobs: (count: number) => voi
             {/* <h2>Total Jobs: {jobs.length}</h2> */}
             {jobs.map((job) => (
                 <JobCard key={job.id} {...job} />
-            ))}
+            ))} 
         </section>
     );
 };
